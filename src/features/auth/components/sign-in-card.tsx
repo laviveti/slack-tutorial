@@ -1,10 +1,10 @@
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import React from "react";
 import { SignInFlow } from "../types";
 
 interface SignInCardProps {
@@ -12,6 +12,9 @@ interface SignInCardProps {
 }
 
 export const SignInCard = ({ setState }: SignInCardProps) => {
+  const [email, setEmail] = React.useState<string>("");
+  const [password, setPassword] = React.useState<string>("");
+
   return (
     <Card className="size-full p-8">
       <CardHeader className="px-0 pt-0">
@@ -22,16 +25,16 @@ export const SignInCard = ({ setState }: SignInCardProps) => {
         <form className="space-y-2.5">
           <Input
             disabled={false}
-            value={""}
-            onChange={() => {}}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
             type="email"
             required
           />
           <Input
             disabled={false}
-            value={""}
-            onChange={() => {}}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
             type="password"
             required
@@ -65,7 +68,12 @@ export const SignInCard = ({ setState }: SignInCardProps) => {
         </div>
         <p className="text-xs text-muted-foreground">
           Don&apos;t have an account?{" "}
-          <span onClick={() => setState("signUp")} className="text-sky-700 hover:underline cursor-pointer">Sign up</span>
+          <span
+            onClick={() => setState("signUp")}
+            className="text-sky-700 hover:underline cursor-pointer"
+          >
+            Sign up
+          </span>
         </p>
       </CardContent>
     </Card>
